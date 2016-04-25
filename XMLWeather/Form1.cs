@@ -21,7 +21,7 @@ namespace XMLWeather
             GetData();
 
             // take info from the current weather file and display it to the screen
-            ExtractCurrent();
+           //ExtractCurrent();
 
             // take info from the forecast weather file and display it to the screen
             ExtractForecast();
@@ -33,10 +33,10 @@ namespace XMLWeather
 
             string currentFile = "http://api.openweathermap.org/data/2.5/weather?q=Stratford,CA&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0";
             string forecastFile = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Stratford,CA&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0";
-            
+
             //download this web address file and save it into weatherdata document file
-              //client.DownloadFile(currentFile, "WeatherData.xml");
-              //client.DownloadFile(forecastFile, "WeatherData7Day.xml");
+            client.DownloadFile(currentFile, "WeatherData.xml");
+            client.DownloadFile(forecastFile, "WeatherData7Day.xml");
         }
 
         private void ExtractCurrent()
@@ -67,7 +67,7 @@ namespace XMLWeather
                     {
                         if(grandChild.Name == "speed")
                         {
-                            labelWind.Text = grandChild.Attributes["name"].Value;
+                            labelWindDir.Text = grandChild.Attributes["name"].Value;
                         }
                     }
                 }
@@ -91,6 +91,16 @@ namespace XMLWeather
                 {
                     foreach (XmlNode grandChild in child.ChildNodes)
                     {
+                        if (grandChild.Name == "name")
+                        {
+                            cityOutput.Text = grandChild.InnerText;
+                        }
+                    }
+                }
+                if (child.Name == "location")
+                {
+                    foreach (XmlNode grandChild in child.ChildNodes)
+                    {
                         if (grandChild.Name == "country")
                         {
                             labelCountry.Text = grandChild.InnerText;
@@ -105,10 +115,39 @@ namespace XMLWeather
                     {
                         foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
                         {
-                            //if (greatGrandChild.Name == "symbol var")
-                            //{
-                            //    labelType.Text = greatGrandChild.Attributes["name"].Value;
-                            //}
+                            if (greatGrandChild.Name == "symbol")
+                            {
+                                labelType.Text = greatGrandChild.Attributes["name"].Value;
+                            }
+                           
+                            if (greatGrandChild.Name == "windDirection")
+                            {
+                                switch (day)
+                                {
+                                    case 1:
+                                        labelWindDir.Text = greatGrandChild.Attributes["name"].Value;
+                                        break;
+                                    case 2:
+                                        labelWindDir.Text = greatGrandChild.Attributes["name"].Value;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            if (greatGrandChild.Name == "windSpeed")
+                            {
+                                switch (day)
+                                {
+                                    case 1:
+                                        labelWindSpd.Text = greatGrandChild.Attributes["mps"].Value;
+                                        break;
+                                    case 2:
+                                        labelWindSpd.Text = greatGrandChild.Attributes["mps"].Value;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
                             if (greatGrandChild.Name == "temperature")
                             {
                                 switch (day)
@@ -157,6 +196,6 @@ namespace XMLWeather
             
         }
 
-  
+ 
     }
 }

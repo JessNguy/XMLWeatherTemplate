@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cityOutput = new System.Windows.Forms.Label();
             this.labelTemp = new System.Windows.Forms.Label();
-            this.labelWind = new System.Windows.Forms.Label();
+            this.labelWindDir = new System.Windows.Forms.Label();
             this.labelMax = new System.Windows.Forms.Label();
             this.labelMin = new System.Windows.Forms.Label();
             this.labelMax2 = new System.Windows.Forms.Label();
@@ -42,7 +42,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelDate = new System.Windows.Forms.Label();
             this.labelType = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelWindSpd = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -63,7 +63,7 @@
             // 
             this.cityOutput.AutoSize = true;
             this.cityOutput.Font = new System.Drawing.Font("Comic Sans MS", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cityOutput.Location = new System.Drawing.Point(225, 98);
+            this.cityOutput.Location = new System.Drawing.Point(237, 87);
             this.cityOutput.Name = "cityOutput";
             this.cityOutput.Size = new System.Drawing.Size(70, 38);
             this.cityOutput.TabIndex = 0;
@@ -72,22 +72,22 @@
             // labelTemp
             // 
             this.labelTemp.AutoSize = true;
-            this.labelTemp.Font = new System.Drawing.Font("Comic Sans MS", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTemp.Location = new System.Drawing.Point(267, 268);
+            this.labelTemp.Font = new System.Drawing.Font("Comic Sans MS", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTemp.Location = new System.Drawing.Point(247, 268);
             this.labelTemp.Name = "labelTemp";
-            this.labelTemp.Size = new System.Drawing.Size(86, 38);
+            this.labelTemp.Size = new System.Drawing.Size(118, 51);
             this.labelTemp.TabIndex = 1;
             this.labelTemp.Text = "Temp";
             // 
-            // labelWind
+            // labelWindDir
             // 
-            this.labelWind.AutoSize = true;
-            this.labelWind.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWind.Location = new System.Drawing.Point(434, 395);
-            this.labelWind.Name = "labelWind";
-            this.labelWind.Size = new System.Drawing.Size(113, 30);
-            this.labelWind.TabIndex = 2;
-            this.labelWind.Text = "Wind Dir.";
+            this.labelWindDir.AutoSize = true;
+            this.labelWindDir.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWindDir.Location = new System.Drawing.Point(434, 395);
+            this.labelWindDir.Name = "labelWindDir";
+            this.labelWindDir.Size = new System.Drawing.Size(113, 30);
+            this.labelWindDir.TabIndex = 2;
+            this.labelWindDir.Text = "Wind Dir.";
             // 
             // labelMax
             // 
@@ -149,7 +149,7 @@
             // 
             this.labelCountry.AutoSize = true;
             this.labelCountry.Font = new System.Drawing.Font("Comic Sans MS", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCountry.Location = new System.Drawing.Point(261, 60);
+            this.labelCountry.Location = new System.Drawing.Point(283, 49);
             this.labelCountry.Name = "labelCountry";
             this.labelCountry.Size = new System.Drawing.Size(117, 38);
             this.labelCountry.TabIndex = 9;
@@ -177,21 +177,21 @@
             // 
             this.labelType.AutoSize = true;
             this.labelType.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelType.Location = new System.Drawing.Point(239, 342);
+            this.labelType.Location = new System.Drawing.Point(239, 337);
             this.labelType.Name = "labelType";
             this.labelType.Size = new System.Drawing.Size(139, 30);
             this.labelType.TabIndex = 12;
             this.labelType.Text = "Type of day";
             // 
-            // label3
+            // labelWindSpd
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(536, 395);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 30);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Wind Spd.";
+            this.labelWindSpd.AutoSize = true;
+            this.labelWindSpd.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWindSpd.Location = new System.Drawing.Point(536, 395);
+            this.labelWindSpd.Name = "labelWindSpd";
+            this.labelWindSpd.Size = new System.Drawing.Size(120, 30);
+            this.labelWindSpd.TabIndex = 13;
+            this.labelWindSpd.Text = "Wind Spd.";
             // 
             // pictureBox2
             // 
@@ -219,7 +219,7 @@
             // 
             // buttonDay1
             // 
-            this.buttonDay1.Location = new System.Drawing.Point(16, 449);
+            this.buttonDay1.Location = new System.Drawing.Point(5, 449);
             this.buttonDay1.Name = "buttonDay1";
             this.buttonDay1.Size = new System.Drawing.Size(96, 57);
             this.buttonDay1.TabIndex = 17;
@@ -228,7 +228,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(107, 449);
+            this.button1.Location = new System.Drawing.Point(100, 449);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 57);
             this.button1.TabIndex = 18;
@@ -237,7 +237,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(199, 449);
+            this.button2.Location = new System.Drawing.Point(195, 449);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 57);
             this.button2.TabIndex = 19;
@@ -246,7 +246,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(292, 449);
+            this.button3.Location = new System.Drawing.Point(290, 449);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(96, 57);
             this.button3.TabIndex = 20;
@@ -255,7 +255,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(384, 449);
+            this.button4.Location = new System.Drawing.Point(385, 449);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(96, 57);
             this.button4.TabIndex = 21;
@@ -264,7 +264,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(476, 449);
+            this.button5.Location = new System.Drawing.Point(480, 449);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(96, 57);
             this.button5.TabIndex = 22;
@@ -273,7 +273,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(569, 449);
+            this.button6.Location = new System.Drawing.Point(575, 449);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(96, 57);
             this.button6.TabIndex = 23;
@@ -295,7 +295,7 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelWindSpd);
             this.Controls.Add(this.labelType);
             this.Controls.Add(this.labelDate);
             this.Controls.Add(this.pictureBox1);
@@ -306,7 +306,7 @@
             this.Controls.Add(this.labelMax2);
             this.Controls.Add(this.labelMin);
             this.Controls.Add(this.labelMax);
-            this.Controls.Add(this.labelWind);
+            this.Controls.Add(this.labelWindDir);
             this.Controls.Add(this.labelTemp);
             this.Controls.Add(this.cityOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -327,7 +327,7 @@
 
         private System.Windows.Forms.Label cityOutput;
         private System.Windows.Forms.Label labelTemp;
-        private System.Windows.Forms.Label labelWind;
+        private System.Windows.Forms.Label labelWindDir;
         private System.Windows.Forms.Label labelMax;
         private System.Windows.Forms.Label labelMin;
         private System.Windows.Forms.Label labelMax2;
@@ -338,7 +338,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.Label labelType;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelWindSpd;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
