@@ -13,16 +13,25 @@ namespace XMLWeather
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
+        int day = 1;
 
+        public Form1()
+        {      
+            InitializeComponent();
             // get information about current and forecast weather from the internet
             GetData();
 
             // take info from the current weather file and display it to the screen
-           //ExtractCurrent();
+            //ExtractCurrent();
 
+            //if user presses "day 2" make 'day'(variable to 2 etc.)
+            //put 'day' into a switch case 
+           
+            switch (day)
+            {
+                case 1:
+                    break;
+            }
             // take info from the forecast weather file and display it to the screen
             ExtractForecast();
         }
@@ -67,7 +76,7 @@ namespace XMLWeather
                     {
                         if(grandChild.Name == "speed")
                         {
-                            labelWindDir.Text = grandChild.Attributes["name"].Value;
+                            //labelWindDir.Text = grandChild.Attributes["name"].Value;
                         }
                     }
                 }
@@ -83,7 +92,7 @@ namespace XMLWeather
             XmlNode parent;
             parent = doc.DocumentElement;
 
-            int day = 1;
+
             //check each child of the parent element
             foreach (XmlNode child in parent.ChildNodes)
             {
@@ -119,71 +128,42 @@ namespace XMLWeather
                             {
                                 labelType.Text = greatGrandChild.Attributes["name"].Value;
                             }
-                           
+
                             if (greatGrandChild.Name == "windDirection")
                             {
-                                switch (day)
-                                {
-                                    case 1:
-                                        labelWindDir.Text = greatGrandChild.Attributes["name"].Value;
-                                        break;
-                                    case 2:
-                                        labelWindDir.Text = greatGrandChild.Attributes["name"].Value;
-                                        break;
-                                    default:
-                                        break;
-                                }
+                                labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
                             }
+
+
                             if (greatGrandChild.Name == "windSpeed")
                             {
-                                switch (day)
-                                {
-                                    case 1:
-                                        labelWindSpd.Text = greatGrandChild.Attributes["mps"].Value;
-                                        break;
-                                    case 2:
-                                        labelWindSpd.Text = greatGrandChild.Attributes["mps"].Value;
-                                        break;
-                                    default:
-                                        break;
-                                }
+                                labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
                             }
+
                             if (greatGrandChild.Name == "temperature")
                             {
-                                switch (day)
+                                labelMax.Text = greatGrandChild.Attributes["max"].Value;
+                                labelMin.Text = greatGrandChild.Attributes["min"].Value;
+
+
+                                if (greatGrandChild.Name == "clouds")
                                 {
-                                    case 1:
-                                        labelMax.Text = greatGrandChild.Attributes["max"].Value;
-                                        labelMin.Text = greatGrandChild.Attributes["min"].Value;
-
-                                        break;
-                                    case 2:
-                                        labelMax2.Text = greatGrandChild.Attributes["max"].Value;
-                                        label1.Text = greatGrandChild.Attributes["min"].Value;
-
-                                        break;
-                                    default:
-                                        break;
+                                    //    switch (day)
+                                    //    {
+                                    //        case 1:
+                                    //            labelCloud1.Text = greatGrandChild.Attributes["value"].Value;
+                                    //            day++;
+                                    //            break;
+                                    //        case 2:
+                                    //            labelCloud2.Text = greatGrandChild.Attributes["value"].Value;
+                                    //            day++;
+                                    //            break;
+                                    //        default:
+                                    //            break;
+                                    //    }
                                 }
-                            }
 
-                            if (greatGrandChild.Name == "clouds")
-                            {
-                                switch (day)
-                                {
-                                    case 1:
-                                        labelCloud1.Text = greatGrandChild.Attributes["value"].Value;
-                                        day++;
-                                        break;
-                                    case 2:
-                                        labelCloud2.Text = greatGrandChild.Attributes["value"].Value;
-                                        day++;
-                                        break;
-                                    default:
-                                        break;
-                                }
                             }
-                       
                         }
                     }
                 }
@@ -191,11 +171,44 @@ namespace XMLWeather
         }
 
 
-        private void MakePictureParent()
+    private void MakePictureParent()
         {
             
         }
 
- 
+        private void buttonDay1_Click(object sender, EventArgs e)
+        {
+            day = 1;
+        }
+
+        private void buttonDay2_Click(object sender, EventArgs e)
+        {
+            day = 2;
+        }
+
+        private void buttonDay3_Click(object sender, EventArgs e)
+        {
+            day = 3;
+        }
+
+        private void buttonDay4_Click(object sender, EventArgs e)
+        {
+            day = 4;
+        }
+
+        private void buttonDay5_Click(object sender, EventArgs e)
+        {
+            day = 5;
+        }
+
+        private void buttonDay6_Click(object sender, EventArgs e)
+        {
+            day = 6;
+        }
+
+        private void buttonDay7_Click(object sender, EventArgs e)
+        {
+            day = 7;
+        }
     }
 }
