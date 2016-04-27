@@ -74,7 +74,7 @@
             // 
             this.labelTemp.AutoSize = true;
             this.labelTemp.Font = new System.Drawing.Font("Comic Sans MS", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTemp.Location = new System.Drawing.Point(247, 268);
+            this.labelTemp.Location = new System.Drawing.Point(239, 258);
             this.labelTemp.Name = "labelTemp";
             this.labelTemp.Size = new System.Drawing.Size(118, 51);
             this.labelTemp.TabIndex = 1;
@@ -84,7 +84,7 @@
             // 
             this.labelMax.AutoSize = true;
             this.labelMax.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMax.Location = new System.Drawing.Point(203, 395);
+            this.labelMax.Location = new System.Drawing.Point(174, 393);
             this.labelMax.Name = "labelMax";
             this.labelMax.Size = new System.Drawing.Size(56, 30);
             this.labelMax.TabIndex = 3;
@@ -94,7 +94,7 @@
             // 
             this.labelMin.AutoSize = true;
             this.labelMin.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMin.Location = new System.Drawing.Point(323, 395);
+            this.labelMin.Location = new System.Drawing.Point(294, 393);
             this.labelMin.Name = "labelMin";
             this.labelMin.Size = new System.Drawing.Size(49, 30);
             this.labelMin.TabIndex = 4;
@@ -150,7 +150,7 @@
             // 
             this.labelDate.AutoSize = true;
             this.labelDate.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDate.Location = new System.Drawing.Point(27, 390);
+            this.labelDate.Location = new System.Drawing.Point(151, 307);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(66, 35);
             this.labelDate.TabIndex = 11;
@@ -160,7 +160,7 @@
             // 
             this.labelType.AutoSize = true;
             this.labelType.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelType.Location = new System.Drawing.Point(239, 337);
+            this.labelType.Location = new System.Drawing.Point(218, 338);
             this.labelType.Name = "labelType";
             this.labelType.Size = new System.Drawing.Size(139, 30);
             this.labelType.TabIndex = 12;
@@ -170,7 +170,7 @@
             // 
             this.labelWindSpd.AutoSize = true;
             this.labelWindSpd.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWindSpd.Location = new System.Drawing.Point(431, 395);
+            this.labelWindSpd.Location = new System.Drawing.Point(402, 393);
             this.labelWindSpd.Name = "labelWindSpd";
             this.labelWindSpd.Size = new System.Drawing.Size(91, 30);
             this.labelWindSpd.TabIndex = 13;
@@ -249,9 +249,9 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::XMLWeather.Properties.Resources.Location_icon;
-            this.pictureBox5.Location = new System.Drawing.Point(231, 32);
+            this.pictureBox5.Location = new System.Drawing.Point(231, 36);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(60, 68);
+            this.pictureBox5.Size = new System.Drawing.Size(60, 48);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 24;
             this.pictureBox5.TabStop = false;
@@ -259,7 +259,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::XMLWeather.Properties.Resources.Location_icon;
-            this.pictureBox4.Location = new System.Drawing.Point(385, 395);
+            this.pictureBox4.Location = new System.Drawing.Point(356, 393);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(40, 30);
             this.pictureBox4.TabIndex = 16;
@@ -268,7 +268,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::XMLWeather.Properties.Resources.downArrow;
-            this.pictureBox3.Location = new System.Drawing.Point(277, 395);
+            this.pictureBox3.Location = new System.Drawing.Point(248, 393);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(40, 30);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -278,7 +278,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::XMLWeather.Properties.Resources.arrow;
-            this.pictureBox2.Location = new System.Drawing.Point(167, 395);
+            this.pictureBox2.Location = new System.Drawing.Point(138, 393);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(40, 30);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -287,9 +287,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(254, 147);
+            this.pictureBox1.Location = new System.Drawing.Point(231, 147);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(110, 94);
+            this.pictureBox1.Size = new System.Drawing.Size(133, 94);
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 

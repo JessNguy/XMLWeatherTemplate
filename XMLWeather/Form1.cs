@@ -21,17 +21,10 @@ namespace XMLWeather
             // get information about current and forecast weather from the internet
             GetData();
 
+            dayForecast df;
+
             // take info from the current weather file and display it to the screen
             //ExtractCurrent();
-
-            //if user presses "day 2" make 'day'(variable to 2 etc.)
-            //put 'day' into a switch case 
-           
-            switch (day)
-            {
-                case 1:
-                    break;
-            }
             // take info from the forecast weather file and display it to the screen
             ExtractForecast();
         }
@@ -92,6 +85,9 @@ namespace XMLWeather
             XmlNode parent;
             parent = doc.DocumentElement;
 
+            //if user presses "day 2" make 'day'(variable to 2 etc.)
+            //put 'day' into a switch case 
+            //in days put : country, city, temp, type of day, date, max, min ,w.dir.spd
 
             //check each child of the parent element
             foreach (XmlNode child in parent.ChildNodes)
@@ -122,32 +118,68 @@ namespace XMLWeather
                 {
                     foreach (XmlNode grandChild in child.ChildNodes)
                     {
-                        foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
-                        {
-                            if (greatGrandChild.Name == "symbol")
+                        //foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
+                       // {
+                            switch (day)
                             {
-                                labelType.Text = greatGrandChild.Attributes["name"].Value;
+                                case 1:
+                                    if (grandChild.Name == "time")
+                                    {
+                                        labelDate.Text = DateTime.Now.ToString("dddd, MMMM dd, yyy");
+                                        foreach(XmlNode greatGrandChild in grandChild.ChildNodes)
+                                        {
+                                            if (greatGrandChild.Name == "")
+                                            {
+
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case 2:
+                                    labelDate.Text = DateTime.Now.AddDays(1).ToString("dddd, MMMM dd, yyy");
+                                    break;
+                                case 3:
+                                    labelDate.Text = DateTime.Now.AddDays(2).ToString("dddd, MMMM dd, yyy");
+                                    break;
+                                case 4:
+                                    labelDate.Text = DateTime.Now.AddDays(3).ToString("dddd, MMMM dd, yyy");
+                                    break;
+                                case 5:
+                                    labelDate.Text = DateTime.Now.AddDays(4).ToString("dddd, MMMM dd, yyy");
+                                    break;
+                                case 6:
+                                    labelDate.Text = DateTime.Now.AddDays(5).ToString("dddd, MMMM dd, yyy");
+                                    break;
+                                case 7:
+                                    labelDate.Text = DateTime.Now.AddDays(6).ToString("dddd, MMMM dd, yyy");
+                                    break;
+                                default:
+                                    break;
                             }
+                            //if (greatGrandChild.Name == "symbol")
+                            //{
+                            //    labelType.Text = greatGrandChild.Attributes["name"].Value;
+                            //}
 
-                            if (greatGrandChild.Name == "windDirection")
-                            {
-                                labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
-                            }
-
-
-                            if (greatGrandChild.Name == "windSpeed")
-                            {
-                                labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
-                            }
-
-                            if (greatGrandChild.Name == "temperature")
-                            {
-                                labelMax.Text = greatGrandChild.Attributes["max"].Value;
-                                labelMin.Text = greatGrandChild.Attributes["min"].Value;
+                            //if (greatGrandChild.Name == "windDirection")
+                            //{
+                            //    labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
+                            //}
 
 
-                                if (greatGrandChild.Name == "clouds")
-                                {
+                            //if (greatGrandChild.Name == "windSpeed")
+                            //{
+                            //    labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
+                            //}
+
+                            //if (greatGrandChild.Name == "temperature")
+                            //{
+                            //    labelMax.Text = greatGrandChild.Attributes["max"].Value;
+                            //    labelMin.Text = greatGrandChild.Attributes["min"].Value;
+
+
+                            //    if (greatGrandChild.Name == "clouds")
+                            //    {
                                     //    switch (day)
                                     //    {
                                     //        case 1:
@@ -161,7 +193,7 @@ namespace XMLWeather
                                     //        default:
                                     //            break;
                                     //    }
-                                }
+                                //}
 
                             }
                         }
