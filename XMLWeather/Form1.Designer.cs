@@ -33,10 +33,6 @@
             this.labelTemp = new System.Windows.Forms.Label();
             this.labelMax = new System.Windows.Forms.Label();
             this.labelMin = new System.Windows.Forms.Label();
-            this.labelMax2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelCloud1 = new System.Windows.Forms.Label();
-            this.labelCloud2 = new System.Windows.Forms.Label();
             this.labelCountry = new System.Windows.Forms.Label();
             this.labelDate = new System.Windows.Forms.Label();
             this.labelType = new System.Windows.Forms.Label();
@@ -53,6 +49,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelCloud1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -100,42 +97,6 @@
             this.labelMin.TabIndex = 4;
             this.labelMin.Text = "Min";
             // 
-            // labelMax2
-            // 
-            this.labelMax2.AutoSize = true;
-            this.labelMax2.Location = new System.Drawing.Point(510, 255);
-            this.labelMax2.Name = "labelMax2";
-            this.labelMax2.Size = new System.Drawing.Size(56, 13);
-            this.labelMax2.TabIndex = 5;
-            this.labelMax2.Text = "Max day 2";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(510, 287);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Min day 2";
-            // 
-            // labelCloud1
-            // 
-            this.labelCloud1.AutoSize = true;
-            this.labelCloud1.Location = new System.Drawing.Point(510, 307);
-            this.labelCloud1.Name = "labelCloud1";
-            this.labelCloud1.Size = new System.Drawing.Size(63, 13);
-            this.labelCloud1.TabIndex = 7;
-            this.labelCloud1.Text = "Cloud day 1";
-            // 
-            // labelCloud2
-            // 
-            this.labelCloud2.AutoSize = true;
-            this.labelCloud2.Location = new System.Drawing.Point(510, 228);
-            this.labelCloud2.Name = "labelCloud2";
-            this.labelCloud2.Size = new System.Drawing.Size(63, 13);
-            this.labelCloud2.TabIndex = 8;
-            this.labelCloud2.Text = "Cloud day 2";
-            // 
             // labelCountry
             // 
             this.labelCountry.AutoSize = true;
@@ -178,72 +139,116 @@
             // 
             // buttonDay1
             // 
+            this.buttonDay1.BackColor = System.Drawing.Color.Red;
+            this.buttonDay1.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonDay1.FlatAppearance.BorderSize = 0;
+            this.buttonDay1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.buttonDay1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.buttonDay1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDay1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDay1.ForeColor = System.Drawing.Color.White;
             this.buttonDay1.Location = new System.Drawing.Point(5, 449);
             this.buttonDay1.Name = "buttonDay1";
             this.buttonDay1.Size = new System.Drawing.Size(96, 57);
             this.buttonDay1.TabIndex = 17;
-            this.buttonDay1.Text = "Day 1";
-            this.buttonDay1.UseVisualStyleBackColor = true;
+            this.buttonDay1.Text = "DAY 1";
+            this.buttonDay1.UseVisualStyleBackColor = false;
             this.buttonDay1.Click += new System.EventHandler(this.buttonDay1_Click);
             // 
             // buttonDay2
             // 
+            this.buttonDay2.BackColor = System.Drawing.Color.DarkOrange;
+            this.buttonDay2.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonDay2.FlatAppearance.BorderSize = 0;
+            this.buttonDay2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDay2.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDay2.ForeColor = System.Drawing.Color.White;
             this.buttonDay2.Location = new System.Drawing.Point(100, 449);
             this.buttonDay2.Name = "buttonDay2";
             this.buttonDay2.Size = new System.Drawing.Size(96, 57);
             this.buttonDay2.TabIndex = 18;
-            this.buttonDay2.Text = "Day 1";
-            this.buttonDay2.UseVisualStyleBackColor = true;
+            this.buttonDay2.Text = "Day 2";
+            this.buttonDay2.UseVisualStyleBackColor = false;
             this.buttonDay2.Click += new System.EventHandler(this.buttonDay2_Click);
             // 
             // buttonDay3
             // 
+            this.buttonDay3.BackColor = System.Drawing.Color.Yellow;
+            this.buttonDay3.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonDay3.FlatAppearance.BorderSize = 0;
+            this.buttonDay3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDay3.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDay3.ForeColor = System.Drawing.Color.White;
             this.buttonDay3.Location = new System.Drawing.Point(195, 449);
             this.buttonDay3.Name = "buttonDay3";
             this.buttonDay3.Size = new System.Drawing.Size(96, 57);
             this.buttonDay3.TabIndex = 19;
-            this.buttonDay3.Text = "Day 1";
-            this.buttonDay3.UseVisualStyleBackColor = true;
+            this.buttonDay3.Text = "Day 3";
+            this.buttonDay3.UseVisualStyleBackColor = false;
             this.buttonDay3.Click += new System.EventHandler(this.buttonDay3_Click);
             // 
             // buttonDay4
             // 
+            this.buttonDay4.BackColor = System.Drawing.Color.Lime;
+            this.buttonDay4.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonDay4.FlatAppearance.BorderSize = 0;
+            this.buttonDay4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDay4.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDay4.ForeColor = System.Drawing.Color.White;
             this.buttonDay4.Location = new System.Drawing.Point(290, 449);
             this.buttonDay4.Name = "buttonDay4";
             this.buttonDay4.Size = new System.Drawing.Size(96, 57);
             this.buttonDay4.TabIndex = 20;
-            this.buttonDay4.Text = "Day 1";
-            this.buttonDay4.UseVisualStyleBackColor = true;
+            this.buttonDay4.Text = "Day 4";
+            this.buttonDay4.UseVisualStyleBackColor = false;
             this.buttonDay4.Click += new System.EventHandler(this.buttonDay4_Click);
             // 
             // buttonDay5
             // 
+            this.buttonDay5.BackColor = System.Drawing.Color.RoyalBlue;
+            this.buttonDay5.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonDay5.FlatAppearance.BorderSize = 0;
+            this.buttonDay5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDay5.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDay5.ForeColor = System.Drawing.Color.White;
             this.buttonDay5.Location = new System.Drawing.Point(385, 449);
             this.buttonDay5.Name = "buttonDay5";
             this.buttonDay5.Size = new System.Drawing.Size(96, 57);
             this.buttonDay5.TabIndex = 21;
-            this.buttonDay5.Text = "Day 1";
-            this.buttonDay5.UseVisualStyleBackColor = true;
+            this.buttonDay5.Text = "Day 5";
+            this.buttonDay5.UseVisualStyleBackColor = false;
             this.buttonDay5.Click += new System.EventHandler(this.buttonDay5_Click);
             // 
             // buttonDay6
             // 
+            this.buttonDay6.BackColor = System.Drawing.Color.MidnightBlue;
+            this.buttonDay6.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonDay6.FlatAppearance.BorderSize = 0;
+            this.buttonDay6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDay6.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDay6.ForeColor = System.Drawing.Color.White;
             this.buttonDay6.Location = new System.Drawing.Point(480, 449);
             this.buttonDay6.Name = "buttonDay6";
             this.buttonDay6.Size = new System.Drawing.Size(96, 57);
             this.buttonDay6.TabIndex = 22;
-            this.buttonDay6.Text = "Day 1";
-            this.buttonDay6.UseVisualStyleBackColor = true;
+            this.buttonDay6.Text = "Day 6";
+            this.buttonDay6.UseVisualStyleBackColor = false;
             this.buttonDay6.Click += new System.EventHandler(this.buttonDay6_Click);
             // 
             // buttonDay7
             // 
+            this.buttonDay7.BackColor = System.Drawing.Color.Purple;
+            this.buttonDay7.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.buttonDay7.FlatAppearance.BorderSize = 0;
+            this.buttonDay7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDay7.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDay7.ForeColor = System.Drawing.Color.White;
             this.buttonDay7.Location = new System.Drawing.Point(575, 449);
             this.buttonDay7.Name = "buttonDay7";
             this.buttonDay7.Size = new System.Drawing.Size(96, 57);
             this.buttonDay7.TabIndex = 23;
-            this.buttonDay7.Text = "Day 1";
-            this.buttonDay7.UseVisualStyleBackColor = true;
+            this.buttonDay7.Text = "Day 7";
+            this.buttonDay7.UseVisualStyleBackColor = false;
             this.buttonDay7.Click += new System.EventHandler(this.buttonDay7_Click);
             // 
             // pictureBox5
@@ -293,11 +298,22 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
+            // labelCloud1
+            // 
+            this.labelCloud1.AutoSize = true;
+            this.labelCloud1.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCloud1.Location = new System.Drawing.Point(501, 354);
+            this.labelCloud1.Name = "labelCloud1";
+            this.labelCloud1.Size = new System.Drawing.Size(91, 30);
+            this.labelCloud1.TabIndex = 25;
+            this.labelCloud1.Text = "W.Spd.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(675, 526);
+            this.Controls.Add(this.labelCloud1);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.buttonDay7);
             this.Controls.Add(this.buttonDay6);
@@ -314,10 +330,6 @@
             this.Controls.Add(this.labelDate);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelCountry);
-            this.Controls.Add(this.labelCloud2);
-            this.Controls.Add(this.labelCloud1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.labelMax2);
             this.Controls.Add(this.labelMin);
             this.Controls.Add(this.labelMax);
             this.Controls.Add(this.labelTemp);
@@ -343,10 +355,6 @@
         private System.Windows.Forms.Label labelTemp;
         private System.Windows.Forms.Label labelMax;
         private System.Windows.Forms.Label labelMin;
-        private System.Windows.Forms.Label labelMax2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label labelCloud1;
-        private System.Windows.Forms.Label labelCloud2;
         private System.Windows.Forms.Label labelCountry;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelDate;
@@ -363,6 +371,7 @@
         private System.Windows.Forms.Button buttonDay6;
         private System.Windows.Forms.Button buttonDay7;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label labelCloud1;
     }
 }
 

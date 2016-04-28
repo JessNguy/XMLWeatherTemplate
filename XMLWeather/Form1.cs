@@ -21,6 +21,12 @@ namespace XMLWeather
             // get information about current and forecast weather from the internet
             GetData();
 
+            DateTime currentTime = new DateTime();
+            //currentTime.TimeOfDay;
+            //TimeSpan start = new TimeSpan(10, 0, 0); //10 o'clock
+            //TimeSpan end = new TimeSpan(12, 0, 0); //12 o'clock
+            //TimeSpan now = DateTime.Now.TimeOfDay;
+
             dayForecast df;
 
             // take info from the current weather file and display it to the screen
@@ -111,99 +117,283 @@ namespace XMLWeather
                             labelCountry.Text = grandChild.InnerText;
                         }
                     }
-
                 }
 
                 if (child.Name == "forecast")
                 {
                     foreach (XmlNode grandChild in child.ChildNodes)
                     {
-                        //foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
-                       // {
-                            switch (day)
-                            {
-                                case 1:
-                                    if (grandChild.Name == "time")
+                        switch (day)
+                        {
+                            case 1:
+                                #region Day 1
+                                if (grandChild.Name == "time")
+                                {
+                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("dddd, MMMM dd, yyy");
+                                }
+                                foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
+                                {
+                                    if (greatGrandChild.Name == "symbol")
                                     {
-                                        labelDate.Text = DateTime.Now.ToString("dddd, MMMM dd, yyy");
-                                        foreach(XmlNode greatGrandChild in grandChild.ChildNodes)
-                                        {
-                                            if (greatGrandChild.Name == "")
-                                            {
-
-                                            }
-                                        }
+                                        //light rain, scattered clouds, heavy intensity rain, moderate rain
+                                        labelType.Text = greatGrandChild.Attributes["name"].Value;
                                     }
-                                    break;
-                                case 2:
-                                    labelDate.Text = DateTime.Now.AddDays(1).ToString("dddd, MMMM dd, yyy");
-                                    break;
-                                case 3:
-                                    labelDate.Text = DateTime.Now.AddDays(2).ToString("dddd, MMMM dd, yyy");
-                                    break;
-                                case 4:
-                                    labelDate.Text = DateTime.Now.AddDays(3).ToString("dddd, MMMM dd, yyy");
-                                    break;
-                                case 5:
-                                    labelDate.Text = DateTime.Now.AddDays(4).ToString("dddd, MMMM dd, yyy");
-                                    break;
-                                case 6:
-                                    labelDate.Text = DateTime.Now.AddDays(5).ToString("dddd, MMMM dd, yyy");
-                                    break;
-                                case 7:
-                                    labelDate.Text = DateTime.Now.AddDays(6).ToString("dddd, MMMM dd, yyy");
-                                    break;
-                                default:
-                                    break;
-                            }
-                            //if (greatGrandChild.Name == "symbol")
-                            //{
-                            //    labelType.Text = greatGrandChild.Attributes["name"].Value;
-                            //}
+                                    if (greatGrandChild.Name == "windDirection")
+                                    {
+                                        labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
+                                    }
 
-                            //if (greatGrandChild.Name == "windDirection")
-                            //{
-                            //    labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
-                            //}
+                                    if (greatGrandChild.Name == "windSpeed")
+                                    {
+                                        labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
+                                    }
+                                    if(greatGrandChild.Name == "temperature")
+                                    {
+                                   //find current time to find out if its morning, evening or night to show what the temperature is
+                                        //if()
+                                        //{
 
+                                        //}
+                                    }
+                                    if (greatGrandChild.Name == "temperature")
+                                    {
+                                        labelMax.Text = greatGrandChild.Attributes["max"].Value;
+                                        labelMin.Text = greatGrandChild.Attributes["min"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "clouds")
+                                    {
+                                        labelCloud1.Text = greatGrandChild.Attributes["value"].Value;
+                                    }
+                                }
+                                #endregion
+                                break;
 
-                            //if (greatGrandChild.Name == "windSpeed")
-                            //{
-                            //    labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
-                            //}
+                            case 2:
+                                #region Day 2
+                                if (grandChild.Name == "time")
+                                {
+                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("dddd, MMMM dd, yyy");
+                                }
+                                foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
+                                {
+                                    if (greatGrandChild.Name == "symbol")
+                                    {
+                                        //light rain, scattered clouds, heavy intensity rain, moderate rain
+                                        labelType.Text = greatGrandChild.Attributes["name"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "windDirection")
+                                    {
+                                        labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
+                                    }
 
-                            //if (greatGrandChild.Name == "temperature")
-                            //{
-                            //    labelMax.Text = greatGrandChild.Attributes["max"].Value;
-                            //    labelMin.Text = greatGrandChild.Attributes["min"].Value;
+                                    if (greatGrandChild.Name == "windSpeed")
+                                    {
+                                        labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
+                                    }
 
+                                    if (greatGrandChild.Name == "temperature")
+                                    {
+                                        labelMax.Text = greatGrandChild.Attributes["max"].Value;
+                                        labelMin.Text = greatGrandChild.Attributes["min"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "clouds")
+                                    {
+                                        labelCloud1.Text = greatGrandChild.Attributes["value"].Value;
+                                    }
+                                }
+                                #endregion
+                                break;
 
-                            //    if (greatGrandChild.Name == "clouds")
-                            //    {
-                                    //    switch (day)
-                                    //    {
-                                    //        case 1:
-                                    //            labelCloud1.Text = greatGrandChild.Attributes["value"].Value;
-                                    //            day++;
-                                    //            break;
-                                    //        case 2:
-                                    //            labelCloud2.Text = greatGrandChild.Attributes["value"].Value;
-                                    //            day++;
-                                    //            break;
-                                    //        default:
-                                    //            break;
-                                    //    }
-                                //}
+                            case 3:
+                                #region Day 3
+                                if (grandChild.Name == "time")
+                                {
+                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("dddd, MMMM dd, yyy");
+                                }
+                                foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
+                                {
+                                    if (greatGrandChild.Name == "symbol")
+                                    {
+                                        //light rain, scattered clouds, heavy intensity rain, moderate rain
+                                        labelType.Text = greatGrandChild.Attributes["name"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "windDirection")
+                                    {
+                                        labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
+                                    }
 
-                            }
-                        }
+                                    if (greatGrandChild.Name == "windSpeed")
+                                    {
+                                        labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
+                                    }
+
+                                    if (greatGrandChild.Name == "temperature")
+                                    {
+                                        labelMax.Text = greatGrandChild.Attributes["max"].Value;
+                                        labelMin.Text = greatGrandChild.Attributes["min"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "clouds")
+                                    {
+                                        labelCloud1.Text = greatGrandChild.Attributes["value"].Value;
+                                    }
+                                }
+                                #endregion
+                                break;
+
+                            case 4:
+                                #region Day 4
+                                if (grandChild.Name == "time")
+                                {
+                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("dddd, MMMM dd, yyy");
+                                }
+                                foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
+                                {
+                                    if (greatGrandChild.Name == "symbol")
+                                    {
+                                        //light rain, scattered clouds, heavy intensity rain, moderate rain
+                                        labelType.Text = greatGrandChild.Attributes["name"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "windDirection")
+                                    {
+                                        labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
+                                    }
+
+                                    if (greatGrandChild.Name == "windSpeed")
+                                    {
+                                        labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
+                                    }
+
+                                    if (greatGrandChild.Name == "temperature")
+                                    {
+                                        labelMax.Text = greatGrandChild.Attributes["max"].Value;
+                                        labelMin.Text = greatGrandChild.Attributes["min"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "clouds")
+                                    {
+                                        labelCloud1.Text = greatGrandChild.Attributes["value"].Value;
+                                    }
+                                }
+                                #endregion
+                                break;
+
+                            case 5:
+                                #region Day 5
+                                if (grandChild.Name == "time")
+                                {
+                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("dddd, MMMM dd, yyy");
+                                }
+                                foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
+                                {
+                                    if (greatGrandChild.Name == "symbol")
+                                    {
+                                        //light rain, scattered clouds, heavy intensity rain, moderate rain
+                                        labelType.Text = greatGrandChild.Attributes["name"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "windDirection")
+                                    {
+                                        labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
+                                    }
+
+                                    if (greatGrandChild.Name == "windSpeed")
+                                    {
+                                        labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
+                                    }
+
+                                    if (greatGrandChild.Name == "temperature")
+                                    {
+                                        labelMax.Text = greatGrandChild.Attributes["max"].Value;
+                                        labelMin.Text = greatGrandChild.Attributes["min"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "clouds")
+                                    {
+                                        labelCloud1.Text = greatGrandChild.Attributes["value"].Value;
+                                    }
+                                }
+                                #endregion
+                                break;
+
+                            case 6:
+                                #region Day 6
+                                if (grandChild.Name == "time")
+                                {
+                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("dddd, MMMM dd, yyy");
+                                }
+
+                                foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
+                                {
+                                    if (greatGrandChild.Name == "symbol")
+                                    {
+                                        //light rain, scattered clouds, heavy intensity rain, moderate rain
+                                        labelType.Text = greatGrandChild.Attributes["name"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "windDirection")
+                                    {
+                                        labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
+                                    }
+
+                                    if (greatGrandChild.Name == "windSpeed")
+                                    {
+                                        labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
+                                    }
+
+                                    if (greatGrandChild.Name == "temperature")
+                                    {
+                                        labelMax.Text = greatGrandChild.Attributes["max"].Value;
+                                        labelMin.Text = greatGrandChild.Attributes["min"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "clouds")
+                                    {
+                                        labelCloud1.Text = greatGrandChild.Attributes["value"].Value;
+                                    }
+                                }
+                                #endregion
+                                break;
+
+                            case 7:
+                                #region Day 7
+                                if (grandChild.Name == "time")
+                                {
+                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
+                                }
+                                foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
+                                {
+                                    if (greatGrandChild.Name == "symbol")
+                                    {
+                                        //light rain, scattered clouds, heavy intensity rain, moderate rain
+                                        labelType.Text = greatGrandChild.Attributes["name"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "windDirection")
+                                    {
+                                        labelWindSpd.Text = greatGrandChild.Attributes["name"].Value + " ";
+                                    }
+
+                                    if (greatGrandChild.Name == "windSpeed")
+                                    {
+                                        labelWindSpd.Text += greatGrandChild.Attributes["mps"].Value;
+                                    }
+
+                                    if (greatGrandChild.Name == "temperature")
+                                    {
+                                        labelMax.Text = greatGrandChild.Attributes["max"].Value;
+                                        labelMin.Text = greatGrandChild.Attributes["min"].Value;
+                                    }
+                                    if (greatGrandChild.Name == "clouds")
+                                    {
+                                        labelCloud1.Text = greatGrandChild.Attributes["value"].Value;
+                                    }
+                                }
+                                #endregion
+                                break;
+
+                            default:
+                                break;
+                        }                                                
                     }
                 }
             }
         }
 
-
-    private void MakePictureParent()
+        private void MakePictureParent()
         {
             
         }
@@ -211,16 +401,19 @@ namespace XMLWeather
         private void buttonDay1_Click(object sender, EventArgs e)
         {
             day = 1;
+            
         }
 
         private void buttonDay2_Click(object sender, EventArgs e)
         {
             day = 2;
+            
         }
 
         private void buttonDay3_Click(object sender, EventArgs e)
         {
             day = 3;
+            
         }
 
         private void buttonDay4_Click(object sender, EventArgs e)
@@ -244,3 +437,4 @@ namespace XMLWeather
         }
     }
 }
+
