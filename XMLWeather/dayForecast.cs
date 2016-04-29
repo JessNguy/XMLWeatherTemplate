@@ -7,17 +7,18 @@ namespace XMLWeather
 {
     class dayForecast
     {
-        int high, low, windDirection, windSpeed, temp;
-        string typeOfDay;
+        
+        public string rain, high, low, windDirection, windSpeed, temp;
 
-        public dayForecast(int _high, int _low, int _windDirection, int _windSpeed, int _temp, string _typeOfDay)
+        public dayForecast(string _high, string _low, string _windDirection, string _windSpeed, string _temp, string _rain)
         {
             high = _high;
             low = _low;
             windDirection = _windDirection;
             windSpeed = _windSpeed;
             temp = _temp;
-            typeOfDay = _typeOfDay;
+            rain = _rain;
+            
         }
     }
 }

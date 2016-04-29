@@ -44,17 +44,16 @@
             this.buttonDay5 = new System.Windows.Forms.Button();
             this.buttonDay6 = new System.Windows.Forms.Button();
             this.buttonDay7 = new System.Windows.Forms.Button();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.labelCloud1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBoxLocation = new System.Windows.Forms.PictureBox();
+            this.pictureBoxWind = new System.Windows.Forms.PictureBox();
+            this.pictureBoxArrowDown = new System.Windows.Forms.PictureBox();
+            this.pictureBoxUpArrow = new System.Windows.Forms.PictureBox();
+            this.pictureBoxTemp = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLocation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArrowDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUpArrow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTemp)).BeginInit();
             this.SuspendLayout();
             // 
             // cityOutput
@@ -111,7 +110,7 @@
             // 
             this.labelDate.AutoSize = true;
             this.labelDate.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDate.Location = new System.Drawing.Point(151, 307);
+            this.labelDate.Location = new System.Drawing.Point(255, 303);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(66, 35);
             this.labelDate.TabIndex = 11;
@@ -251,70 +250,61 @@
             this.buttonDay7.UseVisualStyleBackColor = false;
             this.buttonDay7.Click += new System.EventHandler(this.buttonDay7_Click);
             // 
-            // pictureBox5
+            // pictureBoxLocation
             // 
-            this.pictureBox5.Image = global::XMLWeather.Properties.Resources.Location_icon;
-            this.pictureBox5.Location = new System.Drawing.Point(231, 36);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(60, 48);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 24;
-            this.pictureBox5.TabStop = false;
+            this.pictureBoxLocation.Image = global::XMLWeather.Properties.Resources.Location_icon;
+            this.pictureBoxLocation.Location = new System.Drawing.Point(231, 36);
+            this.pictureBoxLocation.Name = "pictureBoxLocation";
+            this.pictureBoxLocation.Size = new System.Drawing.Size(60, 48);
+            this.pictureBoxLocation.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxLocation.TabIndex = 24;
+            this.pictureBoxLocation.TabStop = false;
             // 
-            // pictureBox4
+            // pictureBoxWind
             // 
-            this.pictureBox4.Image = global::XMLWeather.Properties.Resources.Location_icon;
-            this.pictureBox4.Location = new System.Drawing.Point(356, 393);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(40, 30);
-            this.pictureBox4.TabIndex = 16;
-            this.pictureBox4.TabStop = false;
+            this.pictureBoxWind.Image = global::XMLWeather.Properties.Resources._1;
+            this.pictureBoxWind.Location = new System.Drawing.Point(356, 393);
+            this.pictureBoxWind.Name = "pictureBoxWind";
+            this.pictureBoxWind.Size = new System.Drawing.Size(40, 30);
+            this.pictureBoxWind.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxWind.TabIndex = 16;
+            this.pictureBoxWind.TabStop = false;
             // 
-            // pictureBox3
+            // pictureBoxArrowDown
             // 
-            this.pictureBox3.Image = global::XMLWeather.Properties.Resources.downArrow;
-            this.pictureBox3.Location = new System.Drawing.Point(248, 393);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 30);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 15;
-            this.pictureBox3.TabStop = false;
+            this.pictureBoxArrowDown.Image = global::XMLWeather.Properties.Resources.downArrow;
+            this.pictureBoxArrowDown.Location = new System.Drawing.Point(248, 393);
+            this.pictureBoxArrowDown.Name = "pictureBoxArrowDown";
+            this.pictureBoxArrowDown.Size = new System.Drawing.Size(40, 30);
+            this.pictureBoxArrowDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxArrowDown.TabIndex = 15;
+            this.pictureBoxArrowDown.TabStop = false;
             // 
-            // pictureBox2
+            // pictureBoxUpArrow
             // 
-            this.pictureBox2.Image = global::XMLWeather.Properties.Resources.arrow;
-            this.pictureBox2.Location = new System.Drawing.Point(138, 393);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(40, 30);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 14;
-            this.pictureBox2.TabStop = false;
+            this.pictureBoxUpArrow.Image = global::XMLWeather.Properties.Resources.arrow;
+            this.pictureBoxUpArrow.Location = new System.Drawing.Point(138, 393);
+            this.pictureBoxUpArrow.Name = "pictureBoxUpArrow";
+            this.pictureBoxUpArrow.Size = new System.Drawing.Size(40, 30);
+            this.pictureBoxUpArrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxUpArrow.TabIndex = 14;
+            this.pictureBoxUpArrow.TabStop = false;
             // 
-            // pictureBox1
+            // pictureBoxTemp
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(231, 147);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(133, 94);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
-            // 
-            // labelCloud1
-            // 
-            this.labelCloud1.AutoSize = true;
-            this.labelCloud1.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCloud1.Location = new System.Drawing.Point(501, 354);
-            this.labelCloud1.Name = "labelCloud1";
-            this.labelCloud1.Size = new System.Drawing.Size(91, 30);
-            this.labelCloud1.TabIndex = 25;
-            this.labelCloud1.Text = "W.Spd.";
+            this.pictureBoxTemp.Location = new System.Drawing.Point(231, 147);
+            this.pictureBoxTemp.Name = "pictureBoxTemp";
+            this.pictureBoxTemp.Size = new System.Drawing.Size(133, 94);
+            this.pictureBoxTemp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxTemp.TabIndex = 10;
+            this.pictureBoxTemp.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(675, 526);
-            this.Controls.Add(this.labelCloud1);
-            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.pictureBoxLocation);
             this.Controls.Add(this.buttonDay7);
             this.Controls.Add(this.buttonDay6);
             this.Controls.Add(this.buttonDay5);
@@ -322,13 +312,13 @@
             this.Controls.Add(this.buttonDay3);
             this.Controls.Add(this.buttonDay2);
             this.Controls.Add(this.buttonDay1);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBoxWind);
+            this.Controls.Add(this.pictureBoxArrowDown);
+            this.Controls.Add(this.pictureBoxUpArrow);
             this.Controls.Add(this.labelWindSpd);
             this.Controls.Add(this.labelType);
             this.Controls.Add(this.labelDate);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBoxTemp);
             this.Controls.Add(this.labelCountry);
             this.Controls.Add(this.labelMin);
             this.Controls.Add(this.labelMax);
@@ -339,11 +329,11 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Central Weather";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLocation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArrowDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUpArrow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTemp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,13 +346,13 @@
         private System.Windows.Forms.Label labelMax;
         private System.Windows.Forms.Label labelMin;
         private System.Windows.Forms.Label labelCountry;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxTemp;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.Label labelType;
         private System.Windows.Forms.Label labelWindSpd;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBoxUpArrow;
+        private System.Windows.Forms.PictureBox pictureBoxArrowDown;
+        private System.Windows.Forms.PictureBox pictureBoxWind;
         private System.Windows.Forms.Button buttonDay1;
         private System.Windows.Forms.Button buttonDay2;
         private System.Windows.Forms.Button buttonDay3;
@@ -370,8 +360,7 @@
         private System.Windows.Forms.Button buttonDay5;
         private System.Windows.Forms.Button buttonDay6;
         private System.Windows.Forms.Button buttonDay7;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Label labelCloud1;
+        private System.Windows.Forms.PictureBox pictureBoxLocation;
     }
 }
 
