@@ -28,12 +28,6 @@ namespace XMLWeather
             // get information about current and forecast weather from the internet
             GetData();
 
-            DateTime currentTime = new DateTime();
-            //currentTime.TimeOfDay;
-            //TimeSpan start = new TimeSpan(10, 0, 0); //10 o'clock
-            //TimeSpan end = new TimeSpan(12, 0, 0); //12 o'clock
-            //TimeSpan now = DateTime.Now.TimeOfDay;
-
             // take info from the current weather file and display it to the screen
             //ExtractCurrent();
             // take info from the forecast weather file and display it to the screen
@@ -44,54 +38,50 @@ namespace XMLWeather
         {
             WebClient client = new WebClient();
 
-            string currentFile = "http://api.openweathermap.org/data/2.5/weather?q=Stratford,CA&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0";
+            //string currentFile = "http://api.openweathermap.org/data/2.5/weather?q=Stratford,CA&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0";
             string forecastFile = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Stratford,CA&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0";
 
             //download this web address file and save it into weatherdata document file
-            client.DownloadFile(currentFile, "WeatherData.xml");
-            client.DownloadFile(forecastFile, "WeatherData7Day.xml");
+            //client.DownloadFile(currentFile, "WeatherData.xml");
+            //client.DownloadFile(forecastFile, "WeatherData7Day.xml");
         }
 
-        private void ExtractCurrent()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load("WeatherData.xml");
+        //private void ExtractCurrent()
+        //{
+        //    XmlDocument doc = new XmlDocument();
+        //    doc.Load("WeatherData.xml");
 
-            //create a node variable to represent the parent element
-            XmlNode parent;
-            parent = doc.DocumentElement;
+        //    //create a node variable to represent the parent element
+        //    XmlNode parent;
+        //    parent = doc.DocumentElement;
 
-            //check each child of the parent element
-            foreach (XmlNode child in parent.ChildNodes)
-            {
-                // TODO if the "city" element is found display the value of it's "name" attribute
-                if (child.Name == "city")
-                {
-                    cityOutput.Text = child.Attributes["name"].Value;
-                }
-              
-                if(child.Name =="temperature")
-                {
-                    labelTemp.Text = child.Attributes["value"].Value;
-                }
-                if(child.Name == "wind")
-                {
-                    foreach(XmlNode grandChild in child.ChildNodes)
-                    {
-                        if(grandChild.Name == "speed")
-                        {
-                            //labelWindDir.Text = grandChild.Attributes["name"].Value;
-                        }
-                    }
-                }
-            }
-        }
+        //    //check each child of the parent element
+        //    foreach (XmlNode child in parent.ChildNodes)
+        //    {
+        //        // TODO if the "city" element is found display the value of it's "name" attribute
+        //        if (child.Name == "city")
+        //        {
+        //            cityOutput.Text = child.Attributes["name"].Value;
+        //        }             
+                
+        //        if(child.Name == "wind")
+        //        {
+        //            foreach(XmlNode grandChild in child.ChildNodes)
+        //            {
+        //                if(grandChild.Name == "speed")
+        //                {
+        //                    //labelWindDir.Text = grandChild.Attributes["name"].Value;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         private void ExtractForecast()
         {
 
-            string rain, high, low, windDirection, windSpeed, temp;
-            rain = high = low = windDirection = windSpeed = temp = "";
+            string rain, high, low, windDirection, windSpeed, date;
+            rain = high = low = windDirection = windSpeed = date = "";
 
             XmlDocument doc = new XmlDocument();
             doc.Load("WeatherData7Day.xml");
@@ -137,7 +127,7 @@ namespace XMLWeather
                                 #region Day 1
                                 if (grandChild.Name == "time")
                                 {
-                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
+                                    date = grandChild.Attributes["day"].Value;
                                 }
                                 foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
                                 {
@@ -155,15 +145,7 @@ namespace XMLWeather
                                     if (greatGrandChild.Name == "windSpeed")
                                     {
                                         windSpeed= greatGrandChild.Attributes["mps"].Value;
-                                    }
-                                    if(greatGrandChild.Name == "temperature")
-                                    {
-                                   //find current time to find out if its morning, evening or night to show what the temperature is
-                                        //if()
-                                        //{
-
-                                        //}
-                                    }
+                                    }                                   
                                     if (greatGrandChild.Name == "temperature")
                                     {
                                         high = greatGrandChild.Attributes["max"].Value;
@@ -171,7 +153,7 @@ namespace XMLWeather
                                     }
                                   
                                 }
-                                dayForecast df = new dayForecast(high, low, windDirection, windSpeed, "21", rain);
+                                dayForecast df = new dayForecast(high, low, windDirection, windSpeed, rain, date);
                                 days.Add(df);
                                 day++;
                                 #endregion
@@ -181,13 +163,14 @@ namespace XMLWeather
                                 #region Day 2
                                 if (grandChild.Name == "time")
                                 {
-                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
+                                    date = grandChild.Attributes["day"].Value;
+                                    //labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
                                 }
                                 foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
                                 {
                                     if (greatGrandChild.Name == "symbol")
                                     {
-                                        //light rain, scattered clouds, heavy intensity rain, moderate rain, few clouds
+                                       
                                         rain = greatGrandChild.Attributes["name"].Value;
                                     }
                                     if (greatGrandChild.Name == "windDirection")
@@ -199,14 +182,13 @@ namespace XMLWeather
                                     {
                                         windSpeed = greatGrandChild.Attributes["mps"].Value;
                                     }
-
                                     if (greatGrandChild.Name == "temperature")
                                     {
                                         high = greatGrandChild.Attributes["max"].Value;
                                         low = greatGrandChild.Attributes["min"].Value;
                                     }                                  
                                 }
-                                dayForecast df2 = new dayForecast(high, low, windDirection, windSpeed, "21", rain);                               
+                                dayForecast df2 = new dayForecast(high, low, windDirection, windSpeed, rain, date);                               
                                 days.Add(df2);
                                 day++;                      
                                 #endregion
@@ -216,7 +198,7 @@ namespace XMLWeather
                                 #region Day 3
                                 if (grandChild.Name == "time")
                                 {
-                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
+                                    date = grandChild.Attributes["day"].Value;
                                 }
                                 foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
                                 {
@@ -242,7 +224,7 @@ namespace XMLWeather
                                     }
                                    
                                 }
-                                dayForecast df3 = new dayForecast(high, low, windDirection, windSpeed, "21", rain);
+                                dayForecast df3 = new dayForecast(high, low, windDirection, windSpeed, rain, date);
                                 days.Add(df3);
                                 day++;
                                 #endregion
@@ -252,7 +234,7 @@ namespace XMLWeather
                                 #region Day 4
                                 if (grandChild.Name == "time")
                                 {
-                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
+                                    date = grandChild.Attributes["day"].Value;
                                 }
                                 foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
                                 {
@@ -278,7 +260,7 @@ namespace XMLWeather
                                     }                                 
                                 }
 
-                                dayForecast df4 = new dayForecast(high, low, windDirection, windSpeed, "21", rain);
+                                dayForecast df4 = new dayForecast(high, low, windDirection, windSpeed, rain, date);
                                 days.Add(df4);
                                 day++;
                                 #endregion
@@ -288,7 +270,7 @@ namespace XMLWeather
                                 #region Day 5
                                 if (grandChild.Name == "time")
                                 {
-                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
+                                    date = grandChild.Attributes["day"].Value;
                                 }
                                 foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
                                 {
@@ -313,7 +295,7 @@ namespace XMLWeather
                                         low= greatGrandChild.Attributes["min"].Value;
                                     }
                                 }
-                                dayForecast df5 = new dayForecast(high, low, windDirection, windSpeed, "21", rain);
+                                dayForecast df5 = new dayForecast(high, low, windDirection, windSpeed, rain, date);
                                 days.Add(df5);
                                 day++;
                                 #endregion
@@ -349,9 +331,9 @@ namespace XMLWeather
                                         low = greatGrandChild.Attributes["min"].Value;
                                     }
                                 }
-                                dayForecast df6 = new dayForecast(high, low, windDirection, windSpeed, "21", rain);
+                                dayForecast df6 = new dayForecast(high, low, windDirection, windSpeed, rain, date);
                                 days.Add(df6);
-                                day++;
+                                day++;                                
                                 #endregion
                                 break;
 
@@ -359,7 +341,7 @@ namespace XMLWeather
                                 #region Day 7
                                 if (grandChild.Name == "time")
                                 {
-                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
+                                    date = grandChild.Attributes["day"].Value;
                                 }
                                 foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
                                 {
@@ -384,7 +366,7 @@ namespace XMLWeather
                                         low = greatGrandChild.Attributes["min"].Value;
                                     }
                                 }
-                                dayForecast df7 = new dayForecast(high, low, windDirection, windSpeed, "21", rain);
+                                dayForecast df7 = new dayForecast(high, low, windDirection, windSpeed, rain, date);
                                 days.Add(df7);
                                 day++;
                                 #endregion
@@ -408,29 +390,37 @@ namespace XMLWeather
             labelMax.Text = days[0].high;
             labelMin.Text = days[0].low;
             labelWindSpd.Text = days[0].windDirection;
-            labelWindSpd.Text = days[0].windSpeed;
-            labelTemp.Text = days[0].temp;
+            labelWindSpd.Text = days[0].windSpeed;            
             labelType.Text = days[0].rain;
+            labelDate.Text = days[0].date;
 
-            //light rain, scattered clouds, heavy intensity rain, moderate rain
+            //light rain, scattered clouds, heavy intensity rain, moderate rain, clear skys, broken clouds
             if (days[0].rain == "light rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            else if(days[0].rain == "scattered clouds")
+            if (days[0].rain == "scattered clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
-            else if (days[0].rain == "heavy intensity rain")
+            if (days[0].rain == "heavy intensity rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._7;
             }
-            else if (days[0].rain == "moderate rain")
+            if (days[0].rain == "moderate rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._3;
             }
+            if (days[0].rain == "clear sky")
+            {
+                pictureBoxTemp.Image = Properties.Resources._2;
+            }
+            if (days[0].rain == "broken clouds")
+            {
+                pictureBoxTemp.Image = Properties.Resources._5;
+            }
 
-
+            this.BackColor = System.Drawing.Color.Red;
         }
 
         private void buttonDay2_Click(object sender, EventArgs e)
@@ -438,9 +428,9 @@ namespace XMLWeather
             labelMax.Text = days[1].high;
             labelMin.Text = days[1].low;
             labelWindSpd.Text = days[1].windDirection;
-            labelWindSpd.Text = days[1].windSpeed;
-            labelTemp.Text = days[1].temp;
+            labelWindSpd.Text = days[1].windSpeed;          
             labelType.Text = days[1].rain;
+            labelDate.Text = days[1].date;
 
 
             //light rain, scattered clouds, heavy intensity rain, moderate rain
@@ -448,19 +438,27 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            else if (days[1].rain == "scattered clouds")
+            if (days[1].rain == "scattered clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
-            else if (days[1].rain == "heavy intensity rain")
+            if (days[1].rain == "heavy intensity rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._7;
             }
-            else if (days[1].rain == "moderate rain")
+            if (days[1].rain == "moderate rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._3;
             }
-
+            if (days[1].rain == "clear sky")
+            {
+                pictureBoxTemp.Image = Properties.Resources._2;
+            }
+            if (days[1].rain == "broken clouds")
+            {
+                pictureBoxTemp.Image = Properties.Resources._5;
+            }
+            this.BackColor = System.Drawing.Color.DarkOrange;
         }
 
         private void buttonDay3_Click(object sender, EventArgs e)
@@ -469,27 +467,35 @@ namespace XMLWeather
             labelMin.Text = days[2].low;
             labelWindSpd.Text = days[2].windDirection;
             labelWindSpd.Text = days[2].windSpeed;
-            labelTemp.Text = days[2].temp;
             labelType.Text = days[2].rain;
+            labelDate.Text = days[2].date;
 
             //light rain, scattered clouds, heavy intensity rain, moderate rain
             if (days[2].rain == "light rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            else if (days[2].rain == "scattered clouds")
+            if (days[2].rain == "scattered clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
-            else if (days[2].rain == "heavy intensity rain")
+            if (days[2].rain == "heavy intensity rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._7;
             }
-            else if (days[2].rain == "moderate rain")
+            if (days[2].rain == "moderate rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._3;
             }
-
+            if (days[2].rain == "clear sky")
+            {
+                pictureBoxTemp.Image = Properties.Resources._2;
+            }
+            if (days[2].rain == "broken clouds")
+            {
+                pictureBoxTemp.Image = Properties.Resources._5;
+            }
+            this.BackColor = System.Drawing.Color.Yellow;
         }
 
         private void buttonDay4_Click(object sender, EventArgs e)
@@ -498,8 +504,8 @@ namespace XMLWeather
             labelMin.Text = days[3].low;
             labelWindSpd.Text = days[3].windDirection;
             labelWindSpd.Text = days[3].windSpeed;
-            labelTemp.Text = days[3].temp;
             labelType.Text = days[3].rain;
+            labelDate.Text = days[3].date;
 
 
             //light rain, scattered clouds, heavy intensity rain, moderate rain
@@ -507,19 +513,27 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            else if (days[3].rain == "scattered clouds")
+            if (days[3].rain == "scattered clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
-            else if (days[3].rain == "heavy intensity rain")
+            if (days[3].rain == "heavy intensity rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._7;
             }
-            else if (days[3].rain == "moderate rain")
+            if (days[3].rain == "moderate rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._3;
             }
-
+            if (days[3].rain == "clear sky")
+            {
+                pictureBoxTemp.Image = Properties.Resources._2;
+            }
+            if (days[3].rain == "broken clouds")
+            {
+                pictureBoxTemp.Image = Properties.Resources._5;
+            }
+            this.BackColor = System.Drawing.Color.Lime;
         }
 
         private void buttonDay5_Click(object sender, EventArgs e)
@@ -528,8 +542,8 @@ namespace XMLWeather
             labelMin.Text = days[4].low;
             labelWindSpd.Text = days[4].windDirection;
             labelWindSpd.Text = days[4].windSpeed;
-            labelTemp.Text = days[4].temp;
             labelType.Text = days[4].rain;
+            labelDate.Text = days[4].date;
 
 
             //light rain, scattered clouds, heavy intensity rain, moderate rain
@@ -537,19 +551,27 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            else if (days[4].rain == "scattered clouds")
+            if (days[4].rain == "scattered clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
-            else if (days[4].rain == "heavy intensity rain")
+            if (days[4].rain == "heavy intensity rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._7;
             }
-            else if (days[4].rain == "moderate rain")
+            if (days[4].rain == "moderate rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._3;
             }
-
+            if (days[4].rain == "clear sky")
+            {
+                pictureBoxTemp.Image = Properties.Resources._2;
+            }
+            if (days[4].rain == "broken clouds")
+            {
+                pictureBoxTemp.Image = Properties.Resources._5;
+            }
+            this.BackColor = System.Drawing.Color.RoyalBlue;
         }
 
         private void buttonDay6_Click(object sender, EventArgs e)
@@ -558,8 +580,8 @@ namespace XMLWeather
             labelMin.Text = days[5].low;
             labelWindSpd.Text = days[5].windDirection;
             labelWindSpd.Text = days[5].windSpeed;
-            labelTemp.Text = days[5].temp;
             labelType.Text = days[5].rain;
+            labelDate.Text = days[5].date;
 
 
             //light rain, scattered clouds, heavy intensity rain, moderate rain
@@ -567,19 +589,27 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            else if (days[5].rain == "scattered clouds")
+            if (days[5].rain == "scattered clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
-            else if (days[5].rain == "heavy intensity rain")
+            if (days[5].rain == "heavy intensity rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._7;
             }
-            else if (days[5].rain == "moderate rain")
+            if (days[5].rain == "moderate rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._3;
             }
-
+            if (days[5].rain == "clear sky")
+            {
+                pictureBoxTemp.Image = Properties.Resources._2;
+            }
+            if (days[5].rain == "broken clouds")
+            {
+                pictureBoxTemp.Image = Properties.Resources._5;
+            }
+            this.BackColor = System.Drawing.Color.MidnightBlue;
         }
 
         private void buttonDay7_Click(object sender, EventArgs e)
@@ -588,8 +618,8 @@ namespace XMLWeather
             labelMin.Text = days[6].low;
             labelWindSpd.Text = days[6].windDirection;
             labelWindSpd.Text = days[6].windSpeed;
-            labelTemp.Text = days[6].temp;
             labelType.Text = days[6].rain;
+            labelDate.Text = days[6].date;
 
 
             //light rain, scattered clouds, heavy intensity rain, moderate rain
@@ -597,20 +627,30 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            else if (days[6].rain == "scattered clouds")
+            if (days[6].rain == "scattered clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
-            else if (days[6].rain == "heavy intensity rain")
+            if (days[6].rain == "heavy intensity rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._7;
             }
-            else if (days[6].rain == "moderate rain")
+            if (days[6].rain == "moderate rain")
             {
                 pictureBoxTemp.Image = Properties.Resources._3;
             }
-
+            if (days[6].rain == "clear sky")
+            {
+                pictureBoxTemp.Image = Properties.Resources._2;
+            }
+            if (days[6].rain == "broken clouds")
+            {
+                pictureBoxTemp.Image = Properties.Resources._5;
+            }
+            this.BackColor = System.Drawing.Color.Purple;
         }
+
+        
     }
 }
 
