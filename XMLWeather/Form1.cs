@@ -23,13 +23,13 @@ namespace XMLWeather
         List<dayForecast> days = new List<dayForecast>();
 
         public Form1()
-        {      
+        {
             InitializeComponent();
             // get information about current and forecast weather from the internet
             GetData();
 
             // take info from the current weather file and display it to the screen
-            //ExtractCurrent();
+            ExtractCurrent();
             // take info from the forecast weather file and display it to the screen
             ExtractForecast();
         }
@@ -38,44 +38,78 @@ namespace XMLWeather
         {
             WebClient client = new WebClient();
 
-            //string currentFile = "http://api.openweathermap.org/data/2.5/weather?q=Stratford,CA&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0";
+            string currentFile = "http://api.openweathermap.org/data/2.5/weather?q=Stratford,CA&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0";
             string forecastFile = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Stratford,CA&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0";
 
             //download this web address file and save it into weatherdata document file
-            //client.DownloadFile(currentFile, "WeatherData.xml");
-            //client.DownloadFile(forecastFile, "WeatherData7Day.xml");
+            client.DownloadFile(currentFile, "WeatherData.xml");
+            client.DownloadFile(forecastFile, "WeatherData7Day.xml");
         }
 
-        //private void ExtractCurrent()
-        //{
-        //    XmlDocument doc = new XmlDocument();
-        //    doc.Load("WeatherData.xml");
+        private void ExtractCurrent()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("WeatherData.xml");
 
-        //    //create a node variable to represent the parent element
-        //    XmlNode parent;
-        //    parent = doc.DocumentElement;
+            //create a node variable to represent the parent element
+            XmlNode parent;
+            parent = doc.DocumentElement;
 
-        //    //check each child of the parent element
-        //    foreach (XmlNode child in parent.ChildNodes)
-        //    {
-        //        // TODO if the "city" element is found display the value of it's "name" attribute
-        //        if (child.Name == "city")
-        //        {
-        //            cityOutput.Text = child.Attributes["name"].Value;
-        //        }             
-                
-        //        if(child.Name == "wind")
-        //        {
-        //            foreach(XmlNode grandChild in child.ChildNodes)
-        //            {
-        //                if(grandChild.Name == "speed")
-        //                {
-        //                    //labelWindDir.Text = grandChild.Attributes["name"].Value;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+
+            labelDate.Text = DateTime.Now.ToString("yyy-MM-dd");
+            //labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
+
+            //check each child of the parent element
+            foreach (XmlNode child in parent.ChildNodes)
+            {
+                // TODO if the "city" element is found display the value of it's "name" attribute
+                if (child.Name == "city")
+                {
+                    cityOutput.Text = child.Attributes["name"].Value;
+                }
+                if (child.Name == "temperature")
+                {
+                    labelTemp.Text = child.Attributes["value"].Value + " °C";
+                }
+
+                if (child.Name == "wind")
+                {
+                    foreach (XmlNode grandChild in child.ChildNodes)
+                    {
+                        if (grandChild.Name == "direction")
+                        {
+                            labelWindSpd.Text = grandChild.Attributes["value"].Value + " ";
+                            labelWindSpd.Text += grandChild.Attributes["code"].Value;
+                        }
+                    }
+                }
+                if (child.Name == "clouds")
+                {
+                    if (child.Attributes["name"].Value == "light rain")
+                    {
+                        pictureBoxTemp.Image = Properties.Resources._4;
+                    }
+                    if (child.Attributes["name"].Value == "heavy intensity rain")
+                    {
+                        pictureBoxTemp.Image = Properties.Resources._7;
+                    }
+                    if (child.Attributes["name"].Value == "moderate rain")
+                    {
+                        pictureBoxTemp.Image = Properties.Resources._3;
+                    }
+                    if (child.Attributes["name"].Value == "clear sky")
+                    {
+                        pictureBoxTemp.Image = Properties.Resources._2;
+                    }
+                    if (child.Attributes["name"].Value == "broken clouds"
+                        || child.Attributes["name"].Value == "few clouds"
+                        || child.Attributes["name"].Value == "scattered clouds")
+                    {
+                        pictureBoxTemp.Image = Properties.Resources._5;
+                    }
+                }
+            }
+        }
 
         private void ExtractForecast()
         {
@@ -89,7 +123,7 @@ namespace XMLWeather
             //create a node variable to represent the parent element
             XmlNode parent;
             parent = doc.DocumentElement;
-
+      
             #region City, Country
 
             //check each child of the parent element
@@ -163,8 +197,7 @@ namespace XMLWeather
                                 #region Day 2
                                 if (grandChild.Name == "time")
                                 {
-                                    date = grandChild.Attributes["day"].Value;
-                                    //labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
+                                    date = grandChild.Attributes["day"].Value;                                  
                                 }
                                 foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
                                 {
@@ -305,7 +338,7 @@ namespace XMLWeather
                                 #region Day 6
                                 if (grandChild.Name == "time")
                                 {
-                                    labelDate.Text = Convert.ToDateTime(grandChild.Attributes["day"].Value).ToString("MMM dd");
+                                    date = grandChild.Attributes["day"].Value;
                                 }
 
                                 foreach (XmlNode greatGrandChild in grandChild.ChildNodes)
@@ -387,10 +420,17 @@ namespace XMLWeather
 
         private void buttonDay1_Click(object sender, EventArgs e)
         {
-            labelMax.Text = days[0].high;
-            labelMin.Text = days[0].low;
+            pictureBoxUpArrow.Visible = true;
+            pictureBoxArrowDown.Visible = true;
+            labelMax.Visible = true;
+            labelMin.Visible = true;
+            labelType.Visible = true;
+            labelTemp.Visible = false;
+
+            labelMax.Text = days[0].high + " °C";
+            labelMin.Text = days[0].low + " °C";
             labelWindSpd.Text = days[0].windDirection;
-            labelWindSpd.Text = days[0].windSpeed;            
+            labelWindSpd.Text += " " + days[0].windSpeed;            
             labelType.Text = days[0].rain;
             labelDate.Text = days[0].date;
 
@@ -399,7 +439,7 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            if (days[0].rain == "scattered clouds")
+            if (days[0].rain == "scattered clouds" || days[0].rain == "broken clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
@@ -414,21 +454,24 @@ namespace XMLWeather
             if (days[0].rain == "clear sky")
             {
                 pictureBoxTemp.Image = Properties.Resources._2;
-            }
-            if (days[0].rain == "broken clouds")
-            {
-                pictureBoxTemp.Image = Properties.Resources._5;
-            }
+            }           
 
             this.BackColor = System.Drawing.Color.Red;
         }
 
         private void buttonDay2_Click(object sender, EventArgs e)
         {
-            labelMax.Text = days[1].high;
-            labelMin.Text = days[1].low;
+            pictureBoxUpArrow.Visible = true;
+            pictureBoxArrowDown.Visible = true;
+            labelMax.Visible = true;
+            labelMin.Visible = true;
+            labelType.Visible = true;
+            labelTemp.Visible = false;
+
+            labelMax.Text = days[1].high + " °C";
+            labelMin.Text = days[1].low + " °C";
             labelWindSpd.Text = days[1].windDirection;
-            labelWindSpd.Text = days[1].windSpeed;          
+            labelWindSpd.Text += " " + days[1].windSpeed;          
             labelType.Text = days[1].rain;
             labelDate.Text = days[1].date;
 
@@ -438,7 +481,7 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            if (days[1].rain == "scattered clouds")
+            if (days[1].rain == "scattered clouds" || days[1].rain == "broken clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
@@ -453,20 +496,23 @@ namespace XMLWeather
             if (days[1].rain == "clear sky")
             {
                 pictureBoxTemp.Image = Properties.Resources._2;
-            }
-            if (days[1].rain == "broken clouds")
-            {
-                pictureBoxTemp.Image = Properties.Resources._5;
-            }
+            }            
             this.BackColor = System.Drawing.Color.DarkOrange;
         }
 
         private void buttonDay3_Click(object sender, EventArgs e)
         {
-            labelMax.Text = days[2].high;
-            labelMin.Text = days[2].low;
+            pictureBoxUpArrow.Visible = true;
+            pictureBoxArrowDown.Visible = true;
+            labelMax.Visible = true;
+            labelMin.Visible = true;
+            labelType.Visible = true;
+            labelTemp.Visible = false;
+
+            labelMax.Text = days[2].high + " °C";
+            labelMin.Text = days[2].low + " °C";
             labelWindSpd.Text = days[2].windDirection;
-            labelWindSpd.Text = days[2].windSpeed;
+            labelWindSpd.Text += " " + days[2].windSpeed;
             labelType.Text = days[2].rain;
             labelDate.Text = days[2].date;
 
@@ -475,7 +521,7 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            if (days[2].rain == "scattered clouds")
+            if (days[2].rain == "scattered clouds" || days[2].rain == "broken clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
@@ -491,19 +537,22 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._2;
             }
-            if (days[2].rain == "broken clouds")
-            {
-                pictureBoxTemp.Image = Properties.Resources._5;
-            }
             this.BackColor = System.Drawing.Color.Yellow;
         }
 
         private void buttonDay4_Click(object sender, EventArgs e)
         {
-            labelMax.Text = days[3].high;
-            labelMin.Text = days[3].low;
+            pictureBoxUpArrow.Visible = true;
+            pictureBoxArrowDown.Visible = true;
+            labelMax.Visible = true;
+            labelMin.Visible = true;
+            labelType.Visible = true;
+            labelTemp.Visible = false;
+
+            labelMax.Text = days[3].high + " °C";
+            labelMin.Text = days[3].low + " °C";
             labelWindSpd.Text = days[3].windDirection;
-            labelWindSpd.Text = days[3].windSpeed;
+            labelWindSpd.Text += " " + days[3].windSpeed;
             labelType.Text = days[3].rain;
             labelDate.Text = days[3].date;
 
@@ -513,7 +562,7 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            if (days[3].rain == "scattered clouds")
+            if (days[3].rain == "scattered clouds" || days[3].rain == "broken clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
@@ -529,19 +578,22 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._2;
             }
-            if (days[3].rain == "broken clouds")
-            {
-                pictureBoxTemp.Image = Properties.Resources._5;
-            }
             this.BackColor = System.Drawing.Color.Lime;
         }
 
         private void buttonDay5_Click(object sender, EventArgs e)
         {
-            labelMax.Text = days[4].high;
-            labelMin.Text = days[4].low;
+            pictureBoxUpArrow.Visible = true;
+            pictureBoxArrowDown.Visible = true;
+            labelMax.Visible = true;
+            labelMin.Visible = true;
+            labelType.Visible = true;
+            labelTemp.Visible = false;
+
+            labelMax.Text = days[4].high + " °C";
+            labelMin.Text = days[4].low + " °C";
             labelWindSpd.Text = days[4].windDirection;
-            labelWindSpd.Text = days[4].windSpeed;
+            labelWindSpd.Text += " " + days[4].windSpeed;
             labelType.Text = days[4].rain;
             labelDate.Text = days[4].date;
 
@@ -551,7 +603,7 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            if (days[4].rain == "scattered clouds")
+            if (days[4].rain == "scattered clouds" || days[4].rain == "broken clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
@@ -567,19 +619,22 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._2;
             }
-            if (days[4].rain == "broken clouds")
-            {
-                pictureBoxTemp.Image = Properties.Resources._5;
-            }
             this.BackColor = System.Drawing.Color.RoyalBlue;
         }
 
         private void buttonDay6_Click(object sender, EventArgs e)
         {
-            labelMax.Text = days[5].high;
-            labelMin.Text = days[5].low;
+            pictureBoxUpArrow.Visible = true;
+            pictureBoxArrowDown.Visible = true;
+            labelMax.Visible = true;
+            labelMin.Visible = true;
+            labelType.Visible = true;
+            labelTemp.Visible = false;
+
+            labelMax.Text = days[5].high + " °C";
+            labelMin.Text = days[5].low + " °C";
             labelWindSpd.Text = days[5].windDirection;
-            labelWindSpd.Text = days[5].windSpeed;
+            labelWindSpd.Text += " " + days[5].windSpeed;
             labelType.Text = days[5].rain;
             labelDate.Text = days[5].date;
 
@@ -589,7 +644,7 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            if (days[5].rain == "scattered clouds")
+            if (days[5].rain == "scattered clouds" || days[5].rain == "broken clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
@@ -605,19 +660,22 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._2;
             }
-            if (days[5].rain == "broken clouds")
-            {
-                pictureBoxTemp.Image = Properties.Resources._5;
-            }
             this.BackColor = System.Drawing.Color.MidnightBlue;
         }
 
         private void buttonDay7_Click(object sender, EventArgs e)
         {
-            labelMax.Text = days[6].high;
-            labelMin.Text = days[6].low;
+            pictureBoxUpArrow.Visible = true;
+            pictureBoxArrowDown.Visible = true;
+            labelMax.Visible = true;
+            labelMin.Visible = true;
+            labelType.Visible = true;
+            labelTemp.Visible = false;
+
+            labelMax.Text = days[6].high + " °C";
+            labelMin.Text = days[6].low + " °C";
             labelWindSpd.Text = days[6].windDirection;
-            labelWindSpd.Text = days[6].windSpeed;
+            labelWindSpd.Text += " " + days[6].windSpeed;
             labelType.Text = days[6].rain;
             labelDate.Text = days[6].date;
 
@@ -627,7 +685,7 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._4;
             }
-            if (days[6].rain == "scattered clouds")
+            if (days[6].rain == "scattered clouds" || days[6].rain == "broken clouds")
             {
                 pictureBoxTemp.Image = Properties.Resources._5;
             }
@@ -643,14 +701,8 @@ namespace XMLWeather
             {
                 pictureBoxTemp.Image = Properties.Resources._2;
             }
-            if (days[6].rain == "broken clouds")
-            {
-                pictureBoxTemp.Image = Properties.Resources._5;
-            }
             this.BackColor = System.Drawing.Color.Purple;
         }
-
-        
     }
 }
 
